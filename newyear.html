@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 国内 Staticfile CDN 上的 Bootstrap5 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+    <link href="style.css" rel="stylesheet">
+
+    <title>新年快乐，小黄</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f8f9fa;
+      }
+      .container {
+        text-align: center;
+        background-color: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .countdown {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="container">
+      <h1>吃饭了吗，小黄 ^v^</h1>
+      <p>距离2025年春节还有：</p>
+      <div id="countdown" class="countdown">00天 00时 00分 00秒</div>
+    </div>
+
+    <script>
+      // 设置目标日期：2025年春节（假设是2025年2月10日）
+      const targetDate = new Date('2025-01-29T00:00:00+08:00');
+
+      function updateCountdown() {
+        const now = new Date();
+        const timeDiff = targetDate - now;
+
+        // 如果时间差为负，说明已经过了目标日期
+        if (timeDiff <= 0) {
+          document.getElementById('countdown').innerHTML = '春节快乐！';
+          return;
+        }
+
+        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+        document.getElementById('countdown').innerHTML = `${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
+      }
+
+      // 每秒更新倒计时
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
